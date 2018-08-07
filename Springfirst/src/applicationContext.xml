@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Spring的入门的配置==================== -->
+	<!-- <bean name="userDAO" class="com.spring.demo1.UserDAOImpl" > <property 
+		name="name" value="李东"/> </bean> -->
+
+	<!-- Spring的sBean的生命周期的配置=========== -->
+	<!-- <bean id="customerDAO" class="com.spring.demo2.CustomerDAOImpl" init-method="setup" 
+		destroy-method="destroy"></bean> -->
+
+	<!-- Spring的sBean的生命周期 作用范围的配置 scope =  singleton/prototype 比较常用 剩余的看笔记 
+		=========== -->
+	<!-- <bean id="customerDAO2" class="com.spring.demo2.CustomerDAOImpl" scope="prototype" 
+		init-method="setup" destroy-method="destroy"></bean> -->
+
+	<!-- Spring的Bean的实例化的方式============= -->
+	<!-- 无参数构造方法 -->
+	<!-- <bean id="bean1" class="com.spring.demo3.Bean1"></bean> -->
+
+	<!-- 静态工厂实例化 factory-method 再查 -->
+	<!-- <bean id="bean2" class= "com.spring.demo3.Bean2Factory" factory-method="createBean2"></bean> -->
+
+	<!-- 实例工厂实例化 factory-bean="bean3Factory" 再查 -->
+	<!-- <bean id = "bean3Factory" class="com.spring.demo3.Bean3Factory"></bean> 
+		<bean id = "bean3" factory-bean="bean3Factory" factory-method="createBean3"></bean> -->
+	<!-- Spring的属性注入的方式================== -->
+	<!-- 构造方法的方式 -->
+	<bean id="car" class="com.spring.demo4.Car">
+		<constructor-arg name="name" value="宝马"></constructor-arg>
+		<constructor-arg name="price" value="80000"></constructor-arg>
+	</bean>
+
+	<!-- set方法的方式 -->
+	<bean id="car2" class="com.spring.demo4.Car2">
+		<property name="name" value="奔驰"></property>
+		<property name="price" value="99999"></property>
+	</bean>
+
+
+
+</beans>
