@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:p="http://www.springframework.org/schema/p"  
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Spring的入门的配置==================== -->
-	<!-- <bean name="userDAO" class="com.spring.demo1.UserDAOImpl" > <property 
-		name="name" value="李东"/> </bean> -->
+	<bean name="userDAO" class="com.spring.demo1.UserDAOImpl" > <property
+		name="name" value="李东"/> </bean>
 
 	<!-- Spring的sBean的生命周期的配置=========== -->
 	<!-- <bean id="customerDAO" class="com.spring.demo2.CustomerDAOImpl" init-method="setup" 
@@ -16,8 +16,8 @@
 
 	<!-- Spring的sBean的生命周期 作用范围的配置 scope =  singleton/prototype 比较常用 剩余的看笔记 
 		=========== -->
-	<!-- <bean id="customerDAO2" class="com.spring.demo2.CustomerDAOImpl" scope="prototype" 
-		init-method="setup" destroy-method="destroy"></bean> -->
+	<bean id="customerDAO2" class="com.spring.demo2.CustomerDAOImpl" scope="prototype" 
+		init-method="setup" destroy-method="destroy"></bean>
 
 	<!-- Spring的Bean的实例化的方式============= -->
 	<!-- 无参数构造方法 -->
@@ -37,11 +37,33 @@
 	</bean>
 
 	<!-- set方法的方式 -->
-	<bean id="car2" class="com.spring.demo4.Car2">
+	<!-- <bean id="car2" class="com.spring.demo4.Car2">
 		<property name="name" value="奔驰"></property>
 		<property name="price" value="99999"></property>
+	</bean> -->
+    <!-- set方法注入对象属性 -->
+    <!-- <bean id="employee" class="com.spring.demo4.Employee">
+    	<property name="name" value="涛哥"></property>
+    	<property name="car2" ref="car2"></property>
+    </bean> -->
+    <!-- 改为p名称空间的方式 -->
+    <!-- <bean id="car2" class="com.spring.demo4.Car2" p:name="奇瑞QQ" p:price="999110"></bean> -->
+    <!-- p-方式注入对象 p:xxx-ref="" -->
+    <!-- <bean id="employee" class="com.spring.demo4.Employee" p:name="王东" p:car2-ref="car2"></bean> -->
+    <!-- SpEL的属性注入 -->
+    
+    <bean id="carInfo" class="com.spring.demo4.CarInfo"></bean>
+	<bean id="car2" class="com.spring.demo4.Car2">
+		<property name="name" value="#{carInfo.name}"></property>
+		<property name="price" value="#{carInfo.calculatorPrice()}"></property>
 	</bean>
-
-
-
+	<!-- <bean id="employee" class="com.spring.demo4.Employee">
+		<property name="name" value="#{'赵洪'}"></property>
+		<property name="car2" value="#{car2}"></property>
+	</bean> -->
+	<bean id="employee" class="com.spring.demo4.Employee">
+		<property name="name" value="#{'赵洪'}"></property>
+		<property name="car2" value="#{car2}"></property>
+	</bean>
+	<import resource="applicationContext2.xml"/>
 </beans>

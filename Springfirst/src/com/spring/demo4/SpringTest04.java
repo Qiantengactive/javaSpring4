@@ -10,16 +10,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class SpringTest04 {
 
-	// @Test
-	// /**
-	// * 构造方法方式的属性注入
-	// */
-	// public void demo1() {
-	// ApplicationContext applicationContext = new
-	// ClassPathXmlApplicationContext("applicationContext.xml");
-	// Car car = (Car) applicationContext.getBean("car");
-	// System.out.println(car);
-	// }
+	@Test
+	/**
+	 * 构造方法方式的属性注入
+	 */
+	public void demo1() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		Car car = (Car) applicationContext.getBean("car");
+		System.out.println(car);
+	}
 
 	@Test
 	/**
@@ -29,5 +28,15 @@ public class SpringTest04 {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		Car2 car2 = (Car2) applicationContext.getBean("car2");
 		System.out.println(car2);
+	}
+
+	@Test
+	/**
+	 * set方法注入对象类型
+	 */
+	public void demo3() {
+		ApplicationContext applicantionContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		Employee employee = (Employee) applicantionContext.getBean("employee");
+		System.out.println(employee);
 	}
 }
